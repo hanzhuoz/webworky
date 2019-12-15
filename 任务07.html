@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>renwu07</title>
+	<meat charset = "UTF-8">
+    <style>
+    	*{
+    		padding:0;
+    		margin:0;
+    	}
+    	ul{
+    		list-style: none;
+    	}
+    	.top{
+    		height:20px;
+	        background-color: rgb(204, 204, 204);
+        }
+        .warn{
+	        width:1380px;
+	        height: 20px;
+            margin:0 auto;
+        }
+        .warn>img{
+	        padding-left: 183px;
+            padding-top: 2px;
+            position:absolute;
+        }
+        .word{
+            width:960px; 
+            overflow:hidden;
+            margin: auto;
+            background-color: rgb(204, 204, 204);
+        }
+        .word div{ 
+            width:2500px;
+        }
+        .word1 span{
+	        width:1250px; 
+	        color: red;
+            font-size: 12px;
+            padding-top: 2px;
+            display:block; 
+            float:left;
+        }
+    	.box{
+    		width:1200px;
+    		height:382px;
+    		margin:0 auto;
+    		margin-top:10px;
+    		position:relative;
+    		overflow:hidden;
+    	}
+    	#left{
+    		display:block;
+    		width:30px;
+    		height:50px;
+    		text-align:center;
+    		cursor:pointer;
+            color:;
+            margin-top:175px;
+            line-height: 50px;
+            background: red;
+            position:absolute;
+            opacity:0;
+            float:left;
+            margin-left:20px;
+    	}
+    	#right{
+    		display:block;
+    		width:30px;
+    		height:50px;
+    		text-align:center;
+    		cursor:pointer;
+            color:;
+            margin-top:155px;
+            line-height: 50px;
+            background: red;
+            position:absolute;
+            opacity:0;
+            float:left;
+            margin-left:1150px;
+        }
+    	.slider{
+    		width:12500px;
+    		position:absolute;
+    		left:-1600px;
+    		
+    	}
+    	.slide{
+            overflow:hidden;
+            float:left;
+    	}
+    	.nav{
+    		margin-left:500px;
+    		margin-top:355px;
+    	}
+    	.nav>li{
+    		float:left;
+    		width:20px;
+    		height:20px;
+    		background: #ccc;
+    		cursor:pointer;
+    		margin:0 10px;
+            position:relative;
+            text-align:center;
+            border-radius: 50%;
+		    font-size:14px;
+    	}
+        li.active{
+        	background-color:red;
+        	color:#000;
+        }
+    </style>
+</head>
+<body>
+	   <div class="top" id="top">
+    	<div class="warn" id="warn">
+      		<img src="image/a15.png">
+      		<div class="word" id="word">
+      			<div class="word1" id="word1">
+         			<span class="w1" id="w1">[温馨提示]最近有不少非法分子在网上骗人，请大家注意!!!</span>
+         		</div>
+         	</div>
+     		</div>
+    	</div>
+       <div class = "box" id = "box"> 
+       	    <div class = "slider" style  = "left:-1600px" id = "slider">
+       	        <div class = "slide"><img src = "image/b5.png"alt = ""></div>
+       	        <div class = "slide"><img src = "image/b1.png"alt = ""></div>
+       	        <div class = "slide"><img src = "image/b2.png"alt = ""></div>
+       	        <div class = "slide"><img src = "image/b3.jpg"alt = ""></div>
+       	        <div class = "slide"><img src = "image/b4.jpg"alt = ""></div>
+       	        <div class = "slide"><img src = "image/b5.png"alt = ""></div>
+       	        <div class = "slide"><img src = "image/b1.png"alt = ""></div>
+       	    </div>
+       	    <span id = "left"><</span>
+       	    <span id = "right">></span>
+       	    <ul class = "nav"id = "nav">
+       	    	<li class = "active">1</li>
+       	    	<li>2</li>
+       	    	<li>3</li>
+       	    	<li>4</li>
+       	    	<li>5</li>
+       	    </ul>
+       </div>
+    </div>
+</body>
+<script src = animate.js></script>
+<script>
+	var box = document.getElementById("box"); 
+	var navList = document.getElementById("nav").children;
+	var slider = document.getElementById("slider");
+	var imgs = slider.getElementsByTagName("img");
+    var left = document.getElementById("left");
+    var right = document.getElementById("right");
+    var isMoving = false;
+    var i = 1.2;
+    var warn = document.getElementById("warn");
+	var timer;
+	var timers
+	word1.appendChild(w1.cloneNode(true));
+	    var aroll=setInterval(roll,15);
+	    word.onmouseover = function(){
+	        clearInterval(aroll);
+	    }
+	    word.onmouseout = function(){
+	        aroll = setInterval(roll,15);
+	    }
+	    function roll(){
+      		word.scrollLeft += 1;
+        	if(word.scrollLeft >= w1.offsetWidth){
+            	word.scrollLeft=0;
+        	}
+	    }
+    function next(){
+    	// if(isMoving){
+     //       return;
+    	// }
+    	// isMoving = true;
+    	i++;
+    	navChange();
+        animate(slider,{left:-1600*i},function(){
+        	if(i=== 6.2){
+        		slider.style.left = "-1600px";
+        		i = 1.2;
+        	}
+        	//isMoving = false;
+        });
+    }
+    function prev(){
+    	i--;
+    	navChange();
+        animate(slider,{left:-1600*i},function(){
+        	if(i=== 0.2){
+        		slider.style.left = "-8000px";
+        		i = 5.2;
+        	}
+        });
+    }
+    var timer = setInterval(next,4000);
+    box.onmouseover = function(){
+    	animate(left,{opacity:50})
+    	animate(right,{opacity:50})
+    	clearInterval(timer);
+    }
+    box.onmouseout = function(){
+    	animate(left,{opacity:0})
+    	animate(right,{opacity:0})
+    	timer = setInterval(next,4000);
+    }
+    right.onclick = next;
+    left.onclick = prev;
+    for(var j=0;j<navList.length;++j){
+    	navList[j].idx = j;
+    	if(j==0){
+    		navList[j].onclick = function(){
+    		navChange();
+            animate(slider,{left:-1600})
+    	    }
+        }
+    	else{
+            navList[j].onclick = function(){
+    		i = this.idx+1.2;
+    		navChange();
+            animate(slider,{left:-1600*i})
+    	    }
+    	}
+    }
+    function navChange(){
+    	for(var j=0;j<navList.length;++j){
+    		navList[j].className = ''
+    	}
+    	if(i==6.2||i==1.2){
+    		navList[0].className = 'active';
+    	}
+    	else if(i==0.2){
+    		navList[4].className = 'active';
+    	}
+    	else if(i==2.2){
+            navList[1].className = 'active';
+    	}
+    	else if(i==3.2){
+            navList[2].className = 'active';
+    	}
+        else if(i==4.2){
+            navList[3].className = 'active';
+    	}
+        else if(i==5.2){
+            navList[4].className = 'active';
+    	}
+    }
+</script>
+</html>
